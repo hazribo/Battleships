@@ -62,9 +62,3 @@ For the testing files to work, the following libraries need to also be installed
 You can run the testing files by running the module test_students.py, which is inside of the tests folder.
 Upon being run, a file named test_report.txt is created in the base directory. This will show any errors in the code, if any. 
 As of writing this, **there are no errors** checked for by the given testing files in any of my program files.
-
-## License
-
-Copyright (c) [2023] [Harry Gardner]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy.
