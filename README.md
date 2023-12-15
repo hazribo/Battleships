@@ -3,14 +3,17 @@
 Welcome to Battleships! This is my submission of my coursework for ECM1400 - Programming.
 There are three different ways of playing: the simple game loop, AI opponent game loop, and via a web interface by using Flask.
 
+This has been uploaded to Github at the following link: https://github.com/hazribo/Battleships/
+
 ## Table of Contents
 - [Simple Game Loop](#simple-game-loop)
 - [AI Opponent Game Loop](#ai-opponent-game-loop)
 - [Flask Web Interface](#flask-web-interface)
 
+- [Explanation of Game Files](#explanation-of-game-files)
+
 - [Usage](#usage)
 - [Testing](#testing)
-- [License](#license)
 
 ## Simple Game Loop
 
@@ -28,7 +31,7 @@ The orientation can either be horizontal ("h"), or vertical ("v"). To modify thi
 
 ## AI Opponent Game Loop
 
-Run the mp_game_engine.py file. This starts a game with two boards, one for the user and one for the AI. Valid inputs are "(x, y) or "x, y".
+Run the mp_game_engine.py file. This starts a game with two boards, one for the user and one for the AI. 
 This uses the layout in the placement.json file for the user's board, and the random ship placement option for the AI's board.
 
 ## Flask Web Interface
@@ -44,10 +47,30 @@ You and the AI take turns firing shots at the other's board. The game ends once 
 1. Easy difficulty: the AI randomly picks a square (that hasn't yet been attacked) and attacks it.
 2. Normal difficulty: the game as easy, however, if the AI hits a user ship, its next attack will be one of the four squares directly adjacent to the previous attack square (if any are valid to be attacked).
 
+## Explanation of Game Files
+
+1. Components.py
+This module has the following functions:
+- initialise_board: creates a board of size 10x10, with each index holding a value of None.
+- create_battleships: reads the battleship.txt file and gets battleship info.
+- place_battleships(board, ships, type): uses the board and battleship info to place the battleships in the given style (type).
+
+2. Game_engine.py
+This module has the following functions:
+- attack(coords, board, ships): carries out the attack on the given board at the given coordinates.
+- cli_coordinates_input: client coordinate input; takes the user's inputted coordinates, returns them as a tuple.
+- [simple_game_loop](#simple-game-loop)
+
+3. Mp_game_engine.py
+This module has the following functions:
+- generate_attack(last_attack, ai_used_coords, difficulty): generates the AI's attack depending on the difficulty, whether it last hit a ship or not, and ensuring it cannot attack a square that has already been attacked.
+- [ai_opponent_game_loop](#ai-opponent-game-loop).
+
 ## Usage
 
 These modes can all be run by opening the files in the folder, or by running the files inside of an IDE. 
-All modes can be run on any modern device that has Python installed, as well as the following libraries (installed using pip install NAME_HERE):
+All modes can be run on any modern device that has Python installed, as well as the following libraries.
+These can be installed by using **pip install NAME_HERE** in the command line:
 - Flask
 - Json
 - Jsonify
