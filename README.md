@@ -28,7 +28,7 @@ The orientation can either be horizontal ("h"), or vertical ("v"). To modify thi
 
 ## AI Opponent Game Loop
 
-Run the mp_game_engine.py file. This starts a game with two boards, one for the user and one for the AI. 
+Run the mp_game_engine.py file. This starts a game with two boards, one for the user and one for the AI. Valid inputs are "(x, y) or "x, y".
 This uses the layout in the placement.json file for the user's board, and the random ship placement option for the AI's board.
 
 ## Flask Web Interface
