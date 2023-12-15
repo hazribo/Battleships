@@ -17,7 +17,9 @@ This has been uploaded to Github at the following link: https://github.com/hazri
 
 ## Simple Game Loop
 
-Run the components.py file. This starts a game with just one board that the player attacks. Valid inputs are "(x, y) or "x, y".
+Run the components.py file. This starts a game with just one board that the player attacks. Valid inputs are "(x, y) or "x, y". You are unable to input duplicate coordinates, and will be told to re-input if done so.
+
+You can see your progress as a visualisation of the current board - showing "O" for missed shots and "X" for hits - is printed every round.
 
 **NOTE:** To edit the type of ship placement that the board uses, you can modify the value of the "MODE" constant on line 34 of game_engine.py. The options available for this are "simple", "random", or "custom".
 1. Simple placement: each ship is placed horizontally on each line from x values 0-4.
@@ -33,6 +35,7 @@ The orientation can either be horizontal ("h"), or vertical ("v"). To modify thi
 
 Run the mp_game_engine.py file. This starts a game with two boards, one for the user and one for the AI. 
 This uses the layout in the placement.json file for the user's board, and the random ship placement option for the AI's board.
+This is functionally identical to the simple game loop, with the exception of the AI making attacks against your board, and you lose if the AI sinks all of your battleships before you sink all of the AI battleships.
 
 ## Flask Web Interface
 
@@ -85,3 +88,27 @@ For the testing files to work, the following libraries need to also be installed
 You can run the testing files by running the module test_students.py, which is inside of the tests folder.
 Upon being run, a file named test_report.txt is created in the base directory. This will show any errors in the code, if any. 
 As of writing this, **there are no errors** checked for by the given testing files in any of my program files.
+
+## License
+
+MIT License
+
+Copyright (c) 2023 Harry Gardner
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

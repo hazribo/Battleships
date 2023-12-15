@@ -38,38 +38,77 @@ def generate_attack(last_attack=[-1, -1, False], ai_used_coords=[], difficulty="
 # Runs 2 player (user + AI) game loop
 def ai_opponent_game_loop():
     print("Welcome to Battleships!")
+
+    # Initialise variables
     user_board = initialise_board()
     ai_board = initialise_board()
+    visual_board = initialise_board()
+    ai_used_coords = []
+    user_used_coords = []
+    over = False
 
     # Loads placement.json; 
     f = open("placement.json", "r")
-    user_ships = json.load(f)
+    custom_ships = json.load(f)
+    user_ships = create_battleships()
     ai_ships = create_battleships()
     # Places battleships on both user and AI board:
-    place_battleships(user_board, user_ships, "custom")
+    place_battleships(user_board, custom_ships, "custom")
     place_battleships(ai_board, ai_ships, "random")
 
     # Game continues as long as all ships haven't been sunk:
-    while any(val is not None for row in user_board + ai_board for val in row): 
+    while not over:
+        # Post visual of AI board for user
+        for line in visual_board:
+            print(line)
+
         # User attack:
-        coords = cli_coordinates_input()
+        unique = False
+        while not unique:
+            coords = cli_coordinates_input()
+            if coords in user_used_coords:
+                unique = False
+                print("You've already attacked this square.")
+            else:
+                unique = True
+                user_used_coords.append(coords)
+
         hit, sunk = attack(coords, ai_board, ai_ships)
+        x, y = coords
         if hit == True:
             print("Hit!")
+            visual_board[y][x] = "X"
         else:
             print("Miss!")
+            visual_board[y][x] = "O"
         if sunk == True:
             print("You sunk the AIs battleship!")
 
         # AI attack:
-        ai_coords = generate_attack()
+        ai_unique = False
+        while not ai_unique:    
+            ai_coords = generate_attack(ai_used_coords=ai_used_coords)
+            if ai_coords in ai_used_coords:
+                ai_unique = False
+            else:
+                ai_unique = True
+                ai_used_coords.append(ai_coords)
+            
         ai_hit, ai_sunk = attack(ai_coords, user_board, user_ships)
         if ai_hit == True:
-            print(f"AI attacked {ai_coords}. Hit!")
+            print(f"AI attacked {ai_coords}. Hit!\n")
         else:
-            print(f"AI attacked {ai_coords}. Miss!")
+            print(f"AI attacked {ai_coords}. Miss!\n")
         if ai_sunk == True:
-            print("The AI sunk your battleship!")
+            print("The AI sunk your battleship!\n")
+
+        # Checks for win conditions for user and AI:
+        if all(val is None for row in ai_board for val in row):
+            input("Game over. You win!")
+            over = True
+        elif all(val is None for row in user_board for val in row):
+            input("Game over. You lose.")
+            over = True
 
     print("Game over.")
     return
