@@ -3,8 +3,6 @@
 Welcome to Battleships! This is my submission of my coursework for ECM1400 - Programming.
 There are three different ways of playing: the simple game loop, AI opponent game loop, and via a web interface by using Flask.
 
-This has been uploaded to Github at the following link: https://github.com/hazribo/Battleships/
-
 ## Table of Contents
 - [Simple Game Loop](#simple-game-loop)
 - [AI Opponent Game Loop](#ai-opponent-game-loop)
@@ -48,7 +46,7 @@ You and the AI take turns firing shots at the other's board. The game ends once 
 
 **NOTE:** There are two difficulty options for the AI. The default is "normal", but there is an "easy" difficulty that can also be used. This can be changed by modifying the value of the "DIFFICULTY" constant on line 17 of main.py.
 1. Easy difficulty: the AI randomly picks a square (that hasn't yet been attacked) and attacks it.
-2. Normal difficulty: the game as easy, however, if the AI hits a user ship, its next attack will be one of the four squares directly adjacent to the previous attack square (if any are valid to be attacked).
+2. Normal difficulty: the same as easy, however, if the AI hits a user ship, its next attack will be one of the four squares directly adjacent to the previous attack square (if any are valid to be attacked).
 
 ## Explanation of Game Files
 
